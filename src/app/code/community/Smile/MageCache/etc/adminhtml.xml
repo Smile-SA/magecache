@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+ * MageCache
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade MageCache to newer
+ * versions in the future.
+ *
+ * @category  Smile
+ * @package   Smile_MageCache
+ * @author    Smile <solution.magento@smile.fr>
+ * @copyright 2013 Smile (http://www.smile-oss.com/)
+ * @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */ 
+ -->
+<config>
+    <menu>
+        <system>
+            <children>
+                <smile_magecache translate="title" module="smile_magecache">
+                    <title>Mage Cache</title>
+                    <action>adminhtml/mageCache_action/</action>
+                    <sort_order>92</sort_order>
+                </smile_magecache>
+            </children>
+        </system>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <smile_magecache translate="title" module="smile_magecache">
+                                <title>Mage Cache</title>
+                            </smile_magecache>
+                            <config>
+                                <children>
+                                    <smile_magecache translate="title" module="smile_magecache">
+                                        <title>Mage Cache</title>
+                                    </smile_magecache>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

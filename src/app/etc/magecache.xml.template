@@ -1,0 +1,52 @@
+﻿<?xml version='1.0' encoding="utf-8" ?>
+<!-- 
+/**
+ * MageCache
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade MageCache to newer
+ * versions in the future.
+ *
+ * @category  Smile
+ * @package   Smile_MageCache
+ * @author    Smile <solution.magento@smile.fr>
+ * @copyright 2013 Smile (http://www.smile-oss.com/)
+ * @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */ 
+ -->
+<config>
+    <global>
+        <cache>
+            <request_processors>
+                <smile_magecache>Smile_MageCache_Model_Engine_Default</smile_magecache>
+            </request_processors>
+        </cache>
+        <!-- 
+        <smile_magecache>
+            <backend_options>
+                <id_prefix>PREFIX_</id_prefix>
+                <backend>memcached</backend>
+                <slow_backend>database</slow_backend>
+                <memcached>
+                    <servers>
+                        <server>
+                            <host><![CDATA[host]]></host>
+                            <port><![CDATA[port]]></port>
+                            <persistent><![CDATA[1]]></persistent>
+                        </server>
+                    </servers>
+                    <compression><![CDATA[0]]></compression>
+                </memcached>
+            </backend_options>
+        </smile_magecache>
+         -->
+    </global>
+</config>

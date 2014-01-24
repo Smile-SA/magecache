@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * MageCache
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade MageCache to newer
+ * versions in the future.
+ *
+ * @category  Smile
+ * @package   Smile_MageCache
+ * @author    Smile <solution.magento@smile.fr>
+ * @copyright 2013 Smile (http://www.smile-oss.com/)
+ * @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */ 
+ -->
+<config>
+    <modules>
+        <Smile_MageCache>
+            <version>0.0.1</version>
+        </Smile_MageCache>
+    </modules>
+    <global>
+        <helpers>
+            <smile_magecache>
+                <class>Smile_MageCache_Helper</class>
+            </smile_magecache>
+        </helpers>
+        <models>
+            <smile_magecache>
+                <class>Smile_MageCache_Model</class>
+            </smile_magecache>
+        </models>
+        <blocks>
+            <smile_magecache>
+                <class>Smile_MageCache_Block</class>
+            </smile_magecache>
+        </blocks>
+        <cache>
+            <types>
+                <smile_magecache translate="label,description" module="smile_magecache">
+                    <label>Mage Cache</label>
+                    <description>Full Page Cache (Mage Cache)</description>
+                    <tags>SMILE_MAGE_CACHE</tags>
+                </smile_magecache>
+            </types>
+        </cache>
+        <smile_magecache>
+            <engines>
+                <varnish>
+                    <model>smile_magecache/engine_varnish</model>
+                    <order>10</order>
+                </varnish>
+                <default>
+                    <model>smile_magecache/engine_default</model>
+                    <order>20</order>
+                    <config>
+                        <actions>
+                            <catalog_category_view />
+                            <catalog_product_view />
+                        </actions>
+                    </config>
+                </default>
+            </engines>
+            <actions />
+            <cache_tag_shortcuts>
+                <catalog_category>
+                    <source>CATALOG_CATEGORY</source>
+                    <target>CAT</target>
+                </catalog_category>
+                <catalog_product>
+                    <source>CATALOG_PRODUCT</source>
+                    <target>PRO</target>
+                </catalog_product>
+                <cms_block>
+                    <source>CMS_BLOCK</source>
+                    <target>BLO</target>
+                </cms_block>
+                <cms_page>
+                    <source>CMS_PAGE</source>
+                    <target>PAG</target>
+                </cms_page>
+            </cache_tag_shortcuts>
+        </smile_magecache>
+        <events>
+            <application_clean_cache>
+                <observers>
+                    <clean_cache_tags>
+                        <class>smile_magecache/observer</class>
+                        <method>cleanCacheByTags</method>
+                    </clean_cache_tags>
+                </observers>
+            </application_clean_cache>
+            <controller_front_send_response_after>
+                <observers>
+                    <clean_cache>
+                        <class>smile_magecache/observer</class>
+                        <method>cleanCache</method>
+                    </clean_cache>
+                </observers>
+            </controller_front_send_response_after>
+        </events>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Smile_MageCache before="Mage_Adminhtml">Smile_MageCache_Adminhtml</Smile_MageCache>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <frontend>
+        <events>
+            <model_load_after>
+                <observers>
+                    <add_cache_tags>
+                        <class>smile_magecache/observer</class>
+                        <method>addModelCacheTagsOnLoad</method>
+                    </add_cache_tags>
+                </observers>
+            </model_load_after>
+            <core_collection_abstract_load_after>
+                <observers>
+                    <add_cache_tags>
+                        <class>smile_magecache/observer</class>
+                        <method>addCollectionCacheTagsOnLoad</method>
+                    </add_cache_tags>
+                </observers>
+            </core_collection_abstract_load_after>
+            <catalog_product_collection_load_after>
+                <observers>
+                    <add_cache_tags>
+                        <class>smile_magecache/observer</class>
+                        <method>addCollectionCacheTagsOnLoad</method>
+                    </add_cache_tags>
+                </observers>
+            </catalog_product_collection_load_after>
+            <catalog_category_collection_load_after>
+                <observers>
+                    <add_cache_tags>
+                        <class>smile_magecache/observer</class>
+                        <method>addCategoryCollectionCacheTagsOnLoad</method>
+                    </add_cache_tags>
+                </observers>
+            </catalog_category_collection_load_after>
+            <controller_front_send_response_before>
+                <observers>
+                    <process_cache>
+                        <class>smile_magecache/observer</class>
+                        <method>processCache</method>
+                    </process_cache>
+                </observers>
+            </controller_front_send_response_before>
+            <core_block_abstract_to_html_before>
+                <observers>
+                    <check_block_exception>
+                        <class>smile_magecache/observer</class>
+                        <method>checkBlockExceptionBeforeRender</method>
+                    </check_block_exception>
+                </observers>
+            </core_block_abstract_to_html_before>
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <check_block_exception>
+                        <class>smile_magecache/observer</class>
+                        <method>checkBlockExceptionAfterRender</method>
+                    </check_block_exception>
+                </observers>
+            </core_block_abstract_to_html_after>
+            <controller_action_predispatch>
+                <observers>
+                    <process_ignored_routes>
+                        <class>smile_magecache/observer</class>
+                        <method>processIgnoredRoutes</method>
+                    </process_ignored_routes>
+                </observers>
+            </controller_action_predispatch>
+        </events>
+        <smile_magecache>
+            <block_exceptions />
+            <ignored_routes>
+                <customer>/customer</customer>
+                <checkout>/checkout</checkout>
+            </ignored_routes>
+        </smile_magecache>
+    </frontend>
+    <default>
+        <smile_magecache>
+            <general>
+                <asynchronous_flush>1</asynchronous_flush>
+                <debug>0</debug>
+            </general>
+            <default>
+                <enabled>0</enabled>
+            </default>
+            <varnish>
+                <enabled>0</enabled>
+                <servers />
+                <mode>socket</mode>
+            </varnish>
+        </smile_magecache>
+    </default>
+</config>
