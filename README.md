@@ -23,4 +23,4 @@ The installation will be processed from the master branch. If you prefer to pick
 
 ### Documentation
 
-Read the guide available at : https://raw.github.com/Smile-SA/mongogento/master/docs/Smile_PageCache%20-%20Guide.pd%20%20
+Read the guide available at : https://raw.github.com/Smile-SA/mongogento/master/docs/Smile_PageCache%20-%20Guide.pdf
