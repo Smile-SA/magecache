@@ -14,12 +14,12 @@ This module should be deployed on new project with huge catalog (> 100,000 produ
 
 The easiest way to install the module is to use the installer, by launching the following shell command from you Magento installation root folder :
 
-    php < <(wget -O - https://raw.github.com/Smile-SA/mongogento/master/installer.php)
+    php < <(wget -O - https://raw.github.com/Smile-SA/magecache/master/installer.php)
 
 
 The installation will be processed from the master branch. If you prefer to pick a specific release (v.1.0.0 by example), you can use this syntax to specify the release :
 
-    php -- v.1.0.0 < <(wget -O - https://raw.github.com/Smile-SA/mongogento/master/installer.php)
+    php -- v.1.0.0 < <(wget -O - https://raw.github.com/Smile-SA/magecache/master/installer.php)
 
 ### Documentation
 
