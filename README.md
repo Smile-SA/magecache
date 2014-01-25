@@ -1,12 +1,16 @@
 # MageCache
 
-The module provides an integration of **MongoDB** into **Magento**. The first version handle product attributes and media galleries.
+The module provides an advanced integration of **Varnish** into **Magento**. 
 
-It has been developed and tested against **Magento EE 1.13**.
+**Smile_MageCache** module implements 2 fundamental mechanisms required for efficient cache management:
+1. **Tagging**, that is used to define all possible dependencies and attach proper tags to each page
+2. **Cache invalidation**, that is used to purge an object stored in 3rd party cache engine like
+Varnish, CDN, etc. when one of several tags are expired.
 
 
-This module should be deployed on new project with huge catalog (> 100,000 products) since it allows significant reduction of the performance inpact of the EAV model by reducing dramatically the number of attributes stored into the database.
+This module contains several predefined components and strategies for each of these mechanisms. It also provides a flexible API in order to customize them adapting to the needs of specific project.
 
+It has been developed and tested against **Magento EE 1.13**. 
 
 ## Install MageCache
 
