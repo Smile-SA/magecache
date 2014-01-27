@@ -3,6 +3,7 @@
 The module provides an advanced integration of **Varnish** into **Magento**. 
 
 **Smile_MageCache** module implements 2 fundamental mechanisms required for efficient cache management:
+
 1. **Tagging**, that is used to define all possible dependencies and attach proper tags to each page
 2. **Cache invalidation**, that is used to purge an object stored in 3rd party cache engine like
 Varnish, CDN, etc. when one of several tags are expired.
