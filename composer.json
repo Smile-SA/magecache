@@ -1,0 +1,15 @@
+{
+    "name": "smile-sa/magecache",
+    "type": "magento-module",
+    "license":"AFL-3.0",
+    "description":"The module provides an advanced integration of Varnish into Magento",
+    "authors":[
+        {
+            "name":"Aurelien FOUCRET",
+            "email":"aurelien.foucret@smile.fr"
+        }
+    ],
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
