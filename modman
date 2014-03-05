@@ -1,0 +1,14 @@
+# Comments are supported, begin a line with a hash
+# Modules
+src/app/code/community/Smile            app/code/community/Smile
+
+# Config
+src/app/etc/magecache.xml.template      app/etc/magecache.xml.template
+src/app/etc/modules/Smile_MageCache.xml app/etc/modules/Smile_MageCache.xml
+
+# Libs
+src/lib/Varnish                         lib/Varnish
+
+# Shell scripts
+src/shell/magecache.php                 shell/magecache.php
+
