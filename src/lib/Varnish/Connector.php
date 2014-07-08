@@ -31,7 +31,7 @@ class Varnish_Connector
      *
      * @var string
      */
-    protected $_connectionType = 'socket';
+    protected $_connectionType = 'varnish3_socket';
 
     /**
      * Connections list

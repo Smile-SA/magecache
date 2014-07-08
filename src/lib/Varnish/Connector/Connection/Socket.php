@@ -24,7 +24,7 @@
  * @copyright 2013 Smile
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
 */
-class Varnish_Connector_Connection_Socket extends Varnish_Connector_Connection
+abstract class Varnish_Connector_Connection_Socket extends Varnish_Connector_Connection
 {
     /**
      * Response code for successful request
@@ -66,7 +66,7 @@ class Varnish_Connector_Connection_Socket extends Varnish_Connector_Connection
         $port = $server['port'];
         $this->_handler = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
         if ($this->_handler === false) {
-            $this->_logSocketError($handler, $host, 'socket_create');
+            $this->_logSocketError($this->_handler, $host, 'socket_create');
             $this->_throwException('Could not create a socket');
         }
         $result = socket_connect($this->_handler, $host, $port);
@@ -167,31 +167,6 @@ class Varnish_Connector_Connection_Socket extends Varnish_Connector_Connection
         $response->code = $params[0];
         $response->body = $rawResponse;
         return $response;
-    }
-
-    /**
-     * Purge pages by specific response header
-     *
-     * @param string $header header
-     * @param string $tag    tag
-     *
-     * @return void
-     */
-    public function purgeByResponseHeader($header, $tag)
-    {
-        $this->_put('purge obj.http.'.$header.' ~ '.$tag, true);
-    }
-
-    /**
-     * Purge pages by URL pattern
-     *
-     * @param string $pattern URL pattern
-     *
-     * @return void
-     */
-    public function purgeByUrl($pattern)
-    {
-        $this->_put('purge.url '.$pattern, true);
     }
 
     /**

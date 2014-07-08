@@ -47,7 +47,7 @@
  * @copyright 2013 Smile
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class Varnish_Connector_Connection_Http extends Varnish_Connector_Connection
+class Varnish_Connector_Connection_Varnish2_Http extends Varnish_Connector_Connection
 {
     /**
      * Default server port

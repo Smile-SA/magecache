@@ -35,12 +35,16 @@ class Smile_MageCache_Model_Engine_Varnish_Connector_Connection_Mode
     {
         return array(
             array(
-                'value' => 'socket',
-                'label' => Mage::helper('smile_magecache')->__('Varnish administrator socket')
+                'value' => 'varnish3_socket',
+                'label' => Mage::helper('smile_magecache')->__('Varnish3: administrator socket')
             ),
             array(
-                'value' => 'http',
-                'label' => Mage::helper('smile_magecache')->__('HTTP')
+                'value' => 'varnish2_socket',
+                'label' => Mage::helper('smile_magecache')->__('Varnish2: administrator socket')
+            ),
+            array(
+                'value' => 'varnish2_http',
+                'label' => Mage::helper('smile_magecache')->__('Varnish2: HTTP')
             )
         );
     }

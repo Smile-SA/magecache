@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- 
+<!--
 /**
  * MageCache
  *
@@ -20,7 +20,7 @@
  * @author    Smile <solution.magento@smile.fr>
  * @copyright 2013 Smile (http://www.smile-oss.com/)
  * @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
- */ 
+ */
  -->
 <config>
     <modules>
@@ -207,7 +207,7 @@
             <varnish>
                 <enabled>0</enabled>
                 <servers />
-                <mode>socket</mode>
+                <mode>varnish3_socket</mode>
             </varnish>
         </smile_magecache>
     </default>
