@@ -2,6 +2,7 @@
     "name": "smile-sa/magecache",
     "type": "magento-module",
     "license":"AFL-3.0",
+    "homepage": "https://github.com/Smile-SA/magecache",
     "description":"The module provides an advanced integration of Varnish into Magento",
     "authors":[
         {
