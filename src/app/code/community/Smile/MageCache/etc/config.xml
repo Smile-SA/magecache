@@ -208,6 +208,7 @@
                 <enabled>0</enabled>
                 <servers />
                 <mode>varnish3_socket</mode>
+                <secret_eol>0</secret_eol>
             </varnish>
         </smile_magecache>
     </default>
