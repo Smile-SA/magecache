@@ -128,7 +128,7 @@ abstract class Varnish_Connector_Connection_Socket extends Varnish_Connector_Con
     protected function _put($command, $checkResponse = false)
     {
         $this->_log('['.$this->_host.'] '.$command, Zend_Log::INFO);
-        if (Mage::getStoreConfig('smile_magecache/general/secret_eol')) {
+        if (Mage::getStoreConfig('smile_magecache/varnish/secret_eol')) {
             $command .= "\n";
         }
         if ((socket_write($this->_handler, $command, strlen($command))) === false) {
