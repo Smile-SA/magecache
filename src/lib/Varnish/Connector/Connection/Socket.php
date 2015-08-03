@@ -128,7 +128,9 @@ abstract class Varnish_Connector_Connection_Socket extends Varnish_Connector_Con
     protected function _put($command, $checkResponse = false)
     {
         $this->_log('['.$this->_host.'] '.$command, Zend_Log::INFO);
-        $command .= "\n";
+        if (Mage::getStoreConfig('smile_magecache/general/secret_eol')) {
+            $command .= "\n";
+        }
         if ((socket_write($this->_handler, $command, strlen($command))) === false) {
             $this->_logSocketError($this->_handler, $this->_host, 'socket_write');
             $this->_throwException('Unable to send a command to %s', $this->_host);
