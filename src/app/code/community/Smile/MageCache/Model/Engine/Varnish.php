@@ -99,6 +99,9 @@ class Smile_MageCache_Model_Engine_Varnish extends Smile_MageCache_Model_Engine_
                     );
                     if (!empty($parts[2])) {
                         $result['secret'] = $parts[2];
+                        if (Mage::getStoreConfig('smile_magecache/varnish/secret_eol')) {
+                            $result['secret'] .= "\n";
+                        }
                     }
                     $this->_servers[] = $result;
                 }
