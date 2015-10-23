@@ -1,3 +1,14 @@
+v1.2.1 - 2015-10-23
+========================
+
+@dvasconcelos dvasconcelos released this on 23 Oct 2015
+
+Issue with the end of line configuration
+
+WARNING : By default, the end of line added in the secret in varnish is added.
+Please verify in your /etc/varnish/secret if you have an EOL. To verify :
+$ cat /etc/varnish/secret
+
 v1.2.0 - 2015-08-03
 =========================
 
@@ -5,8 +16,7 @@ v1.2.0 - 2015-08-03
 
 Add secret end of line configuration
 
-WARNING : By default, the end of line added in the secret in varnish 2 has been removed.
-If you update you module from this version don't forget to enable secret_eol or change the varnish secret on the server.
+WARNING : Use v1.2.1 !
 
 v1.1.0 - 2015-07-10
 =========================
