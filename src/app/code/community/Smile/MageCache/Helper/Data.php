@@ -38,6 +38,12 @@ class Smile_MageCache_Helper_Data extends Mage_Core_Helper_Abstract
     const COMMIT_MODE_PARTIAL = 'patial';
 
     /**
+     * list of tags to ignore
+     * @var array
+     */
+    protected $_tagsToIgnore = array();
+
+    /**
      * Cache tags to attach to the page
      *
      * @var array
@@ -72,6 +78,31 @@ class Smile_MageCache_Helper_Data extends Mage_Core_Helper_Abstract
      * @var string
      */
     protected static $_commitMode = null;
+
+    /**
+     * PHP Constructor
+     *
+     * @return Smile_MageCache_Helper_Data
+     */
+    public function __construct()
+    {
+        $this->addTagToIgnore('customer');
+    }
+
+    /**
+     * Add a tag to ignore
+     *
+     * @param string $tag tag to ignore
+     *
+     * @return Smile_MageCache_Helper_Data
+     */
+    public function addTagToIgnore($tag)
+    {
+        $this->_tagsToIgnore[] = strtoupper($tag);
+        $this->_tagsToIgnore = array_unique($this->_tagsToIgnore);
+
+        return $this;
+    }
 
     /**
      * Activate module
@@ -150,10 +181,13 @@ class Smile_MageCache_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getTagsToPut()
     {
+        $regexp = '/^('.implode('|', $this->_tagsToIgnore).')_[0-9]+$/';
+
         $this->_tagsToPut = array_unique($this->_tagsToPut);
         foreach ($this->_tagsToPut as $index => $tag) {
-            if (!empty($tag)) {
-                $this->_tagsToPut[$index] = strtoupper($tag);
+            $tag = strtoupper($tag);
+            if (!empty($tag) && !preg_match($regexp, $tag)) {
+                $this->_tagsToPut[$index] = $tag;
             } else {
                 unset($this->_tagsToPut[$index]);
             }

@@ -309,7 +309,7 @@ class Smile_MageCache_Model_Processor
     {
         if (is_null($this->_cacheTagShortcuts)) {
             $this->_cacheTagShortcuts = array();
-            $path = 'global/smile_magecache/cache_tag_shortcuts';
+            $path = Smile_MageCache_Model_Config::XML_PATH_CACHE_SHORTCUTS;
             foreach (Mage::app()->getConfig()->getNode($path)->children() as $node) {
                 $this->_cacheTagShortcuts[(string)$node->source] = (string)$node->target;
             }
