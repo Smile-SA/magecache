@@ -1,6 +1,6 @@
 # Comments are supported, begin a line with a hash
 # Modules
-src/app/code/community/Smile            app/code/community/Smile
+src/app/code/community/Smile/MageCache  app/code/community/Smile/MageCache
 
 # Config
 src/app/etc/magecache.xml.template      app/etc/magecache.xml.template
