@@ -440,9 +440,11 @@ class Smile_MageCache_Model_Processor
     {
         $path = 'frontend/smile_magecache/ignored_routes';
         $ignoreRoute = false;
+        $requestUri = $action->getRequest()->getRequestUri();
+        $requestUri = preg_replace('/^\/index\.php/', '', $requestUri);
         foreach (Mage::app()->getConfig()->getNode($path)->children() as $node) {
             $route = (string)$node;
-            if (substr($action->getRequest()->getRequestUri(), 0, strlen($route)) === $route) {
+            if (substr($requestUri, 0, strlen($route)) === $route) {
                 $ignoreRoute = true;
                 break;
             }
