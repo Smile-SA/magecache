@@ -1,4 +1,4 @@
-v1.2.2 - 2016-02-18
+v1.2.3 - 2016-02-18
 ========================
 
 @dvasconcelos dvasconcelos released this on 18 Feb 2016
@@ -8,6 +8,12 @@ Features added :
 - Warning when tags header is too big
 - Root to ignore (removing index.php if needed)
 
+v1.2.2 - 2015-11-05
+========================
+
+@FabienM FabienM released this on 05 Nov 2015
+
+Fix modman
 
 v1.2.1 - 2015-10-23
 ========================
