@@ -1,3 +1,14 @@
+v1.2.2 - 2016-02-18
+========================
+
+@dvasconcelos dvasconcelos released this on 18 Feb 2016
+
+Features added :
+- Tags to ignore
+- Warning when tags header is too big
+- Root to ignore (removing index.php if needed)
+
+
 v1.2.1 - 2015-10-23
 ========================
 
