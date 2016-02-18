@@ -192,6 +192,7 @@
             <ignored_routes>
                 <customer>/customer</customer>
                 <checkout>/checkout</checkout>
+                <api>/api</api>
             </ignored_routes>
         </smile_magecache>
     </frontend>

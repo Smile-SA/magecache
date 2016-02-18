@@ -28,6 +28,12 @@ class Smile_MageCache_Model_Engine_Varnish extends Smile_MageCache_Model_Engine_
     implements Smile_MageCache_Model_Engine_Feature_PurgeUrl
 {
     /**
+     * The limit before warning in the log.
+     * The real apache2 limit is 8192 => we have 50% marge
+     */
+    const HEADER_LENGTH_LIMIT = 4096;
+
+    /**
      * Cache header name
      */
     const CACHE_HEADER_NAME = 'X-Cache-Tags';
@@ -208,9 +214,20 @@ class Smile_MageCache_Model_Engine_Varnish extends Smile_MageCache_Model_Engine_
      */
     public function processResponse(Zend_Controller_Response_Http $response, Zend_Controller_Request_Http $request)
     {
-        $response->setHeader(
-            self::CACHE_HEADER_NAME,
-            $this->getCacheHeader()
-        );
+        $headerValue = $this->getCacheHeader();
+        $length = strlen($headerValue);
+
+        if ($length > self::HEADER_LENGTH_LIMIT) {
+            Mage::log(
+                'Smile MageCache Warning: the '
+                .self::CACHE_HEADER_NAME.' header has more than '
+                .self::HEADER_LENGTH_LIMIT.' octets.'
+            );
+            Mage::log('  => URI: '.$request->getServer('SCRIPT_URI'));
+            Mage::log('  => Length: '.$length);
+            Mage::log('  => Nb Tags: '.count($this->getRequestTags()));
+        }
+
+        $response->setHeader(self::CACHE_HEADER_NAME, $headerValue);
     }
 }
