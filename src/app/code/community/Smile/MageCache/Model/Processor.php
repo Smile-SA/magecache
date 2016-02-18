@@ -385,6 +385,7 @@ class Smile_MageCache_Model_Processor
     public function checkBlockExceptionAfterRender(Mage_Core_Block_Abstract $block)
     {
         if (empty($this->_exceptionBlockStock)) {
+            $this->_addBlockCacheTags($block);
             return;
         }
         $lastBlock = $this->_exceptionBlockStock[count($this->_exceptionBlockStock) - 1];
@@ -398,7 +399,24 @@ class Smile_MageCache_Model_Processor
             if (!empty($this->_exceptionBlockStock)) {
                 Mage::helper('smile_magecache')->setCollectTags(false);
             }
+        } else {
+            $this->_addBlockCacheTags($block);
         }
+    }
+
+    /**
+     * add all the tags of a block to Mage Cache List
+     *
+     * @param Mage_Core_Block_Abstract $block Magento Block
+     *
+     * @return void
+     */
+    protected function _addBlockCacheTags(Mage_Core_Block_Abstract $block)
+    {
+        $tags = $block->getCacheTags();
+        $tagsToIgnore = array('cms_block', 'store', 'block_html');
+        $tags = array_diff($tags, $tagsToIgnore);
+        Mage::helper('smile_magecache')->addTags($tags);
     }
 
     /**
