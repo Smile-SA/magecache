@@ -1,3 +1,11 @@
+v1.3.0 - 2016-05-04
+========================
+
+@dvasconcelos dvasconcelos released this on 04 May 2016
+
+Features added :
+- Varnish 4 supported (overrides pugeByUrl Varnish 3 Socket method)
+
 v1.2.3 - 2016-02-18
 ========================
 
