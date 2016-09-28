@@ -184,11 +184,34 @@ class Smile_MageCache_Model_Engine_Varnish extends Smile_MageCache_Model_Engine_
     public function purgeTags($tags)
     {
         $separator = self::CACHE_HEADER_TAG_SEPARATOR;
-        $_tags = array();
+
+        $tagPurge = '';
         foreach ($tags as $tag) {
-            $_tags[] = $separator.$tag.$separator;
+
+            // Create string containing new tag, and adding the new tag to it.
+            $newTagPurge = $tagPurge;
+            if (empty($tagPurge)) {
+                $newTagPurge .=  $separator.$tag.$separator;
+            } else {
+                $newTagPurge .=  '|' . $separator.$tag.$separator;
+            }
+
+            // If there is to much tags to purge, then purge all previous tags, and start a new list
+            // with the current tag in it.
+            if (strlen(self::CACHE_HEADER_NAME . $newTagPurge) > self::HEADER_LENGTH_LIMIT) {
+                $this->_getConnector()->purgeByResponseHeader(self::CACHE_HEADER_NAME, $tagPurge);
+
+                // We must not forget the current tag. We couldn't process it as it was to big so we add it the list
+                // to be processed in the next iteration.
+                $tagPurge = $separator.$tag.$separator;
+            } else {
+                // The sier of the new tag being fine we can continue to work with it.
+                $tagPurge = $newTagPurge;
+            }
         }
-        $this->_getConnector()->purgeByResponseHeader(self::CACHE_HEADER_NAME, join('|', $_tags));
+
+        // Process the remainong tags.
+        $this->_getConnector()->purgeByResponseHeader(self::CACHE_HEADER_NAME, $tagPurge);
     }
 
     /**
