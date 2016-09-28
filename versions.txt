@@ -1,3 +1,11 @@
+v1.3.1 - 2016-09-28
+========================
+
+@dvasconcelos dvasconcelos released this on 28 Sept 2016
+
+Features added :
+- Fixed issue with varnish caches not being emptied properly if to many tags are purged
+
 v1.3.0 - 2016-05-04
 ========================
 
